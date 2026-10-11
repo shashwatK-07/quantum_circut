@@ -9,9 +9,10 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 print(f"Target QPU: {backend.name}")
 
-# State preparation: |+> on qubit 0, |0> on qubit 1
+# State preparation: Bell state (|00> + |11>)/sqrt(2)
 qc = QuantumCircuit(2)
 qc.h(0)
+qc.cx(0, 1)
 
 # Pauli observables (Qiskit labels are little-endian: rightmost char = qubit 0)
 paulis = ["IX", "XI", "IZ", "ZI", "XX", "ZZ"]
